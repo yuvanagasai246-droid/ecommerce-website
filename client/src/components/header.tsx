@@ -1,10 +1,10 @@
-import { Search, ShoppingCart, User, Menu, LogOut } from "lucide-react";
+import { ShoppingCart, Menu, LogOut, Package, Tag, Info, Mail, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { ThemeToggle } from "./theme-toggle";
 import { Badge } from "@/components/ui/badge";
 import { useAuth } from "@/hooks/useAuth";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { SearchDropdown } from "./search-dropdown";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,38 +20,40 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between gap-4">
           <div className="flex items-center gap-8">
-            <button className="flex items-center gap-2" data-testid="link-home">
-              <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary">
-                <span className="text-lg font-bold text-primary-foreground">D</span>
+            <a href="/" className="flex items-center gap-2" data-testid="link-home">
+              <div className="flex h-8 w-8 items-center justify-center rounded-md bg-gradient-to-br from-indigo-600 to-purple-600">
+                <span className="text-lg font-bold text-white">D</span>
               </div>
-              <span className="hidden font-display text-xl font-bold sm:inline">
+              <span className="hidden font-display text-xl font-bold sm:inline bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                 DigitalHub
               </span>
-            </button>
+            </a>
 
             <nav className="hidden items-center gap-6 md:flex">
-              <button className="text-sm font-medium hover-elevate active-elevate-2 rounded-md px-3 py-2" data-testid="link-products">
+              <a href="/products" className="text-sm font-medium hover-elevate active-elevate-2 rounded-md px-3 py-2 flex items-center gap-1" data-testid="link-products">
+                <Package className="h-4 w-4" />
                 Products
-              </button>
-              <button className="text-sm font-medium hover-elevate active-elevate-2 rounded-md px-3 py-2" data-testid="link-categories">
+              </a>
+              <a href="/categories" className="text-sm font-medium hover-elevate active-elevate-2 rounded-md px-3 py-2 flex items-center gap-1" data-testid="link-categories">
+                <Tag className="h-4 w-4" />
                 Categories
-              </button>
-              <button className="text-sm font-medium hover-elevate active-elevate-2 rounded-md px-3 py-2" data-testid="link-deals">
+              </a>
+              <a href="/deals" className="text-sm font-medium hover-elevate active-elevate-2 rounded-md px-3 py-2" data-testid="link-deals">
                 Deals
-              </button>
+              </a>
+              <a href="/about" className="text-sm font-medium hover-elevate active-elevate-2 rounded-md px-3 py-2 flex items-center gap-1" data-testid="link-about">
+                <Info className="h-4 w-4" />
+                About
+              </a>
+              <a href="/contact" className="text-sm font-medium hover-elevate active-elevate-2 rounded-md px-3 py-2 flex items-center gap-1" data-testid="link-contact">
+                <Mail className="h-4 w-4" />
+                Contact
+              </a>
             </nav>
           </div>
 
           <div className="hidden flex-1 max-w-md lg:flex">
-            <div className="relative w-full">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                type="search"
-                placeholder="Search products..."
-                className="pl-10"
-                data-testid="input-search"
-              />
-            </div>
+            <SearchDropdown />
           </div>
 
           <div className="flex items-center gap-2">
@@ -75,16 +77,16 @@ export function Header() {
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="icon" data-testid="button-user-menu">
                     <Avatar className="h-8 w-8">
-                      <AvatarImage src={user?.profileImageUrl || undefined} />
+                      <AvatarImage src={user?.avatar || undefined} />
                       <AvatarFallback>
-                        {user?.firstName?.charAt(0) || user?.email?.charAt(0) || 'U'}
+                        {user?.name?.charAt(0) || user?.email?.charAt(0) || 'U'}
                       </AvatarFallback>
                     </Avatar>
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem className="font-medium">
-                    {user?.firstName || user?.email}
+                    {user?.name || user?.email}
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={() => window.location.href = '/dashboard'} data-testid="menu-dashboard">

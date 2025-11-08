@@ -269,6 +269,143 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Announcements API
+  app.get("/api/announcements", async (req, res) => {
+    try {
+      const announcements = [
+        {
+          id: "1",
+          content: "🎉 New Year Sale - Up to 50% off on all digital products!",
+          link: "/deals",
+          type: "promo"
+        },
+        {
+          id: "2",
+          content: "✨ Free shipping on orders over $50",
+          type: "info"
+        },
+        {
+          id: "3",
+          content: "🚀 Check out our new AI-powered tools collection!",
+          link: "/categories/ai-tools",
+          type: "info"
+        }
+      ];
+      res.json(announcements);
+    } catch (error) {
+      console.error("Error fetching announcements:", error);
+      res.status(500).json({ message: "Failed to fetch announcements" });
+    }
+  });
+
+  // Enhanced search API
+  app.get("/api/search", async (req, res) => {
+    try {
+      const query = req.query.q as string;
+      if (!query || query.length < 2) {
+        return res.json({ results: [] });
+      }
+      
+      const products = await storage.searchProducts(query);
+      const results = products.slice(0, 10).map(p => ({
+        id: p.id,
+        title: p.title,
+        category: p.category,
+        price: `$${Number(p.price).toFixed(2)}`,
+        image: p.image
+      }));
+      
+      res.json({ results });
+    } catch (error) {
+      console.error("Error searching products:", error);
+      res.status(500).json({ message: "Failed to search products" });
+    }
+  });
+
+  // Testimonials API
+  app.get("/api/testimonials", async (req, res) => {
+    try {
+      const testimonials = [
+        {
+          id: "1",
+          name: "Sarah Johnson",
+          avatar: "/attached_assets/generated_images/Female_customer_testimonial_avatar_0a96e832.png",
+          rating: 5,
+          comment: "Amazing platform! Found exactly what I needed for my project. Highly recommended!",
+          verified: true,
+          date: "2026-01-05"
+        },
+        {
+          id: "2",
+          name: "Michael Chen",
+          avatar: "/attached_assets/generated_images/Male_customer_testimonial_avatar_3deee3e5.png",
+          rating: 5,
+          comment: "Great quality products and excellent customer service. Will definitely buy again!",
+          verified: true,
+          date: "2026-01-03"
+        },
+        {
+          id: "3",
+          name: "Emma Rodriguez",
+          avatar: "/attached_assets/generated_images/Young_female_testimonial_avatar_013dea30.png",
+          rating: 4,
+          comment: "Love the variety of digital products available. The checkout process was smooth and easy.",
+          verified: true,
+          date: "2025-12-28"
+        }
+      ];
+      res.json(testimonials);
+    } catch (error) {
+      console.error("Error fetching testimonials:", error);
+      res.status(500).json({ message: "Failed to fetch testimonials" });
+    }
+  });
+
+  // Newsletter subscription API
+  app.post("/api/newsletter/subscribe", async (req, res) => {
+    try {
+      const bodySchema = z.object({
+        email: z.string().email(),
+      });
+      const validated = bodySchema.parse(req.body);
+      
+      res.json({ 
+        success: true, 
+        message: "Successfully subscribed to newsletter!",
+        couponCode: "WELCOME10"
+      });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: "Invalid email address", errors: error.errors });
+      }
+      console.error("Error subscribing to newsletter:", error);
+      res.status(500).json({ message: "Failed to subscribe to newsletter" });
+    }
+  });
+
+  // Product request API
+  app.post("/api/product-requests", async (req, res) => {
+    try {
+      const bodySchema = z.object({
+        productName: z.string().min(1),
+        email: z.string().email(),
+        message: z.string().optional(),
+      });
+      const validated = bodySchema.parse(req.body);
+      
+      res.json({ 
+        success: true, 
+        message: "Thank you for your request! We'll review it and get back to you soon."
+      });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: "Invalid request data", errors: error.errors });
+      }
+      console.error("Error submitting product request:", error);
+      res.status(500).json({ message: "Failed to submit product request" });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;
