@@ -3,6 +3,7 @@ import { AnnouncementBar } from "@/components/announcement-bar";
 import { HeroCarousel } from "@/components/hero-carousel";
 import { HomeAboutSection } from "@/components/home-about-section";
 import { HomeCategorySection } from "@/components/home-category-section";
+import { HomeProductsSection } from "@/components/home-products-section";
 import { HomeProductRequest } from "@/components/home-product-request";
 import { TestimonialsCarousel } from "@/components/testimonials-carousel";
 import { NewsletterSection } from "@/components/newsletter-section";
@@ -17,6 +18,7 @@ export default function Home() {
         <HeroCarousel />
         <HomeAboutSection />
         <HomeCategorySection />
+        <HomeProductsSection />
         <HomeProductRequest />
         <TestimonialsCarousel />
         <NewsletterSection />
