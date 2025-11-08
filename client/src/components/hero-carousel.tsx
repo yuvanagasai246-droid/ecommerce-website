@@ -42,7 +42,7 @@ export function HeroCarousel() {
 
   if (slides.length === 0) {
     return (
-      <section className="relative h-[500px] md:h-[600px] overflow-hidden bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500">
+      <section className="relative h-[400px] md:h-[500px] overflow-hidden bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500">
         <div className="container mx-auto px-4 h-full flex items-center justify-center">
           <div className="text-center text-white">
             <motion.h1 
@@ -77,7 +77,7 @@ export function HeroCarousel() {
   }
 
   return (
-    <section className="relative h-[500px] md:h-[600px] overflow-hidden">
+    <section className="relative h-[400px] md:h-[500px] overflow-hidden">
       <AnimatePresence mode="wait">
         {slides.map((slide, index) => (
           index === currentSlide && (

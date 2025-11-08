@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
-import { Lightbulb, Send } from "lucide-react";
+import { Lightbulb, Send, Sparkles } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 
@@ -12,6 +12,7 @@ export function HomeProductRequest() {
   const [productName, setProductName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [dialogOpen, setDialogOpen] = useState(false);
   const { toast } = useToast();
 
   const requestMutation = useMutation({
@@ -32,6 +33,7 @@ export function HomeProductRequest() {
       setProductName("");
       setEmail("");
       setMessage("");
+      setDialogOpen(false);
     },
     onError: () => {
       toast({
@@ -48,31 +50,51 @@ export function HomeProductRequest() {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-background to-muted/30">
+    <section className="py-16 md:py-24 bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50 dark:from-purple-950 dark:via-pink-950 dark:to-orange-950">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="max-w-3xl mx-auto"
+          className="max-w-4xl mx-auto text-center"
         >
-          <Card className="border-2 shadow-xl">
-            <CardHeader className="text-center">
-              <div className="flex justify-center mb-4">
-                <div className="p-4 rounded-full bg-gradient-to-br from-orange-500 to-red-500">
-                  <Lightbulb className="h-10 w-10 text-white" />
-                </div>
-              </div>
-              <CardTitle className="text-3xl md:text-4xl bg-gradient-to-r from-indigo-600 to-orange-500 bg-clip-text text-transparent">
+          <div className="flex justify-center mb-6">
+            <div className="p-4 rounded-full bg-gradient-to-br from-orange-500 to-red-500 shadow-lg">
+              <Lightbulb className="h-12 w-12 text-white" />
+            </div>
+          </div>
+          
+          <h2 className="text-3xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-indigo-600 to-orange-500 bg-clip-text text-transparent">
+            Have a Special Request?
+          </h2>
+          
+          <p className="text-lg md:text-xl text-muted-foreground mb-4 max-w-2xl mx-auto leading-relaxed">
+            Can't find the perfect digital product you're looking for? We're here to help! Share your requirements with us and our team will work to bring it to our marketplace.
+          </p>
+          
+          <p className="text-base text-muted-foreground mb-8 max-w-xl mx-auto">
+            Join thousands of customers who have successfully requested custom products. Your input helps us grow and serve you better.
+          </p>
+
+          <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+            <DialogTrigger asChild>
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-indigo-600 to-orange-500 hover:from-indigo-700 hover:to-orange-600 text-lg px-8 py-6 shadow-xl hover:shadow-2xl transition-all"
+              >
+                <Sparkles className="mr-2 h-5 w-5" />
                 Request a Product
-              </CardTitle>
-              <CardDescription className="text-lg">
-                Can't find what you're looking for? Let us know and we'll work on it!
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[500px]">
+              <DialogHeader>
+                <DialogTitle className="text-2xl">Request a Product</DialogTitle>
+                <DialogDescription>
+                  Tell us what you're looking for and we'll do our best to make it available.
+                </DialogDescription>
+              </DialogHeader>
+              <form onSubmit={handleSubmit} className="space-y-4 mt-4">
                 <div>
                   <label htmlFor="productName" className="block text-sm font-medium mb-2">
                     Product Name <span className="text-red-500">*</span>
@@ -128,8 +150,8 @@ export function HomeProductRequest() {
                   )}
                 </Button>
               </form>
-            </CardContent>
-          </Card>
+            </DialogContent>
+          </Dialog>
         </motion.div>
       </div>
     </section>

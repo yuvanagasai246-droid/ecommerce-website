@@ -1,4 +1,4 @@
-import { Shield, Zap, HeadphonesIcon, Award, CheckCircle, TrendingUp } from "lucide-react";
+import { Shield, Zap, HeadphonesIcon, Award, CheckCircle, TrendingUp, Users, Sparkles, Lock, RefreshCw } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 import { motion } from "framer-motion";
 
@@ -38,6 +38,30 @@ const features = [
     title: "Regular Updates",
     description: "Products are regularly updated with new features and improvements.",
     color: "from-indigo-500 to-indigo-600"
+  },
+  {
+    icon: Users,
+    title: "Trusted Community",
+    description: "Join thousands of satisfied customers who trust us for their digital needs.",
+    color: "from-cyan-500 to-cyan-600"
+  },
+  {
+    icon: Sparkles,
+    title: "Premium Selection",
+    description: "Curated collection of the finest digital products from top creators worldwide.",
+    color: "from-amber-500 to-amber-600"
+  },
+  {
+    icon: Lock,
+    title: "Licensed Products",
+    description: "All products come with proper licensing and usage rights for your projects.",
+    color: "from-red-500 to-red-600"
+  },
+  {
+    icon: RefreshCw,
+    title: "Lifetime Access",
+    description: "Once purchased, access your products anytime, anywhere, forever.",
+    color: "from-emerald-500 to-emerald-600"
   }
 ];
 
@@ -58,7 +82,7 @@ export function WhyChooseUs() {
           </p>
         </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 max-w-7xl mx-auto">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (

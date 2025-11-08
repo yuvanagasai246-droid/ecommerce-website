@@ -1,7 +1,8 @@
 import { Header } from "@/components/header";
 import { AnnouncementBar } from "@/components/announcement-bar";
 import { HeroCarousel } from "@/components/hero-carousel";
-import { HomeAboutSection } from "@/components/home-about-section";
+import { OurStorySection } from "@/components/our-story-section";
+import { WhyChooseUs } from "@/components/why-choose-us";
 import { HomeCategorySection } from "@/components/home-category-section";
 import { HomeProductsSection } from "@/components/home-products-section";
 import { HomeProductRequest } from "@/components/home-product-request";
@@ -16,7 +17,8 @@ export default function Home() {
       <Header />
       <main>
         <HeroCarousel />
-        <HomeAboutSection />
+        <OurStorySection />
+        <WhyChooseUs />
         <HomeCategorySection />
         <HomeProductsSection />
         <HomeProductRequest />
