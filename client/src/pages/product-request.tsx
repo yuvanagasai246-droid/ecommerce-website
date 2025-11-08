@@ -52,12 +52,10 @@ export default function ProductRequestPage() {
       }
     } catch (error) {
       toast({
-        title: "Success!",
-        description: "Your product request has been submitted successfully.",
+        title: "Error",
+        description: "Failed to submit product request. Please try again.",
+        variant: "destructive",
       });
-      setIsSubmitted(true);
-      setIsOpen(false);
-      setFormData({ productName: "", email: "", message: "" });
     } finally {
       setIsLoading(false);
     }
