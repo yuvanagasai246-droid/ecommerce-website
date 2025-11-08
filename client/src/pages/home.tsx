@@ -1,13 +1,11 @@
 import { Header } from "@/components/header";
 import { AnnouncementBar } from "@/components/announcement-bar";
-import { Hero } from "@/components/hero";
-import { CategoryGrid } from "@/components/category-grid";
-import { FeaturedProducts } from "@/components/featured-products";
-import { Features } from "@/components/features";
-import { WhyChooseUs } from "@/components/why-choose-us";
-import { Testimonials } from "@/components/testimonials";
+import { HeroCarousel } from "@/components/hero-carousel";
+import { HomeAboutSection } from "@/components/home-about-section";
+import { HomeCategorySection } from "@/components/home-category-section";
+import { HomeProductRequest } from "@/components/home-product-request";
+import { TestimonialsCarousel } from "@/components/testimonials-carousel";
 import { NewsletterSection } from "@/components/newsletter-section";
-import { CTASection } from "@/components/cta-section";
 import { Footer } from "@/components/footer";
 
 export default function Home() {
@@ -16,14 +14,12 @@ export default function Home() {
       <AnnouncementBar />
       <Header />
       <main>
-        <Hero />
-        <FeaturedProducts />
-        <CategoryGrid />
-        <WhyChooseUs />
-        <Features />
-        <Testimonials />
+        <HeroCarousel />
+        <HomeAboutSection />
+        <HomeCategorySection />
+        <HomeProductRequest />
+        <TestimonialsCarousel />
         <NewsletterSection />
-        <CTASection />
       </main>
       <Footer />
     </div>

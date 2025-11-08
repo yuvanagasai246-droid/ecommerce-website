@@ -327,31 +327,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const testimonials = [
         {
-          id: "1",
+          id: 1,
           name: "Sarah Johnson",
+          role: "Marketing Director",
           avatar: "/attached_assets/generated_images/Female_customer_testimonial_avatar_0a96e832.png",
           rating: 5,
-          comment: "Amazing platform! Found exactly what I needed for my project. Highly recommended!",
-          verified: true,
-          date: "2026-01-05"
+          content: "Amazing platform! Found exactly what I needed for my project. The quality of products is outstanding and the purchasing process was seamless. Highly recommended!",
+          verified: true
         },
         {
-          id: "2",
+          id: 2,
           name: "Michael Chen",
+          role: "Freelance Developer",
           avatar: "/attached_assets/generated_images/Male_customer_testimonial_avatar_3deee3e5.png",
           rating: 5,
-          comment: "Great quality products and excellent customer service. Will definitely buy again!",
-          verified: true,
-          date: "2026-01-03"
+          content: "Great quality products and excellent customer service. The digital assets I purchased have significantly improved my workflow. Will definitely buy again!",
+          verified: true
         },
         {
-          id: "3",
+          id: 3,
           name: "Emma Rodriguez",
+          role: "UI/UX Designer",
           avatar: "/attached_assets/generated_images/Young_female_testimonial_avatar_013dea30.png",
+          rating: 5,
+          content: "Love the variety of digital products available. The checkout process was smooth and easy. Customer support responded quickly when I had questions.",
+          verified: true
+        },
+        {
+          id: 4,
+          name: "David Kim",
+          role: "Business Owner",
           rating: 4,
-          comment: "Love the variety of digital products available. The checkout process was smooth and easy.",
-          verified: true,
-          date: "2025-12-28"
+          content: "Excellent marketplace with professional products. The pricing is fair and the instant delivery is a huge plus. Would love to see more categories in the future!",
+          verified: true
         }
       ];
       res.json(testimonials);
@@ -403,6 +411,48 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
       console.error("Error submitting product request:", error);
       res.status(500).json({ message: "Failed to submit product request" });
+    }
+  });
+
+  // Home slides API
+  app.get("/api/home-slides", async (req, res) => {
+    try {
+      const slides = [
+        {
+          id: 1,
+          title: "Premium Digital Products",
+          subtitle: "2026 Collection",
+          description: "Discover cutting-edge digital solutions for your business",
+          ctaText: "Explore Now",
+          ctaLink: "/products",
+          imageUrl: "/attached_assets/generated_images/hero-slide-1.png",
+          backgroundColor: "#6366f1"
+        },
+        {
+          id: 2,
+          title: "New Year Sale",
+          subtitle: "Up to 50% Off",
+          description: "Limited time offer on all categories",
+          ctaText: "Shop Deals",
+          ctaLink: "/deals",
+          imageUrl: "/attached_assets/generated_images/hero-slide-2.png",
+          backgroundColor: "#f97316"
+        },
+        {
+          id: 3,
+          title: "AI-Powered Tools",
+          subtitle: "Future of Work",
+          description: "Transform your workflow with intelligent solutions",
+          ctaText: "Learn More",
+          ctaLink: "/categories",
+          imageUrl: "/attached_assets/generated_images/hero-slide-3.png",
+          backgroundColor: "#8b5cf6"
+        }
+      ];
+      res.json(slides);
+    } catch (error) {
+      console.error("Error fetching home slides:", error);
+      res.status(500).json({ message: "Failed to fetch home slides" });
     }
   });
 
