@@ -98,7 +98,7 @@ export function HomeCategorySection() {
                     <CardFooter className="p-4 pt-0">
                       <div className="flex items-center justify-between w-full">
                         <span className="text-lg font-bold text-indigo-600">
-                          ${product.price.toFixed(2)}
+                          ${Number(product.price).toFixed(2)}
                         </span>
                         <Button size="sm" variant="outline">
                           View
