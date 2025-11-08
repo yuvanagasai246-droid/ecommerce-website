@@ -34,16 +34,8 @@ export function Header() {
                 <Package className="h-4 w-4" />
                 Products
               </a>
-              <a href="/categories" className="text-sm font-medium hover-elevate active-elevate-2 rounded-md px-3 py-2 flex items-center gap-1" data-testid="link-categories">
-                <Tag className="h-4 w-4" />
-                Categories
-              </a>
               <a href="/deals" className="text-sm font-medium hover-elevate active-elevate-2 rounded-md px-3 py-2" data-testid="link-deals">
                 Deals
-              </a>
-              <a href="/about" className="text-sm font-medium hover-elevate active-elevate-2 rounded-md px-3 py-2 flex items-center gap-1" data-testid="link-about">
-                <Info className="h-4 w-4" />
-                About
               </a>
               <a href="/contact" className="text-sm font-medium hover-elevate active-elevate-2 rounded-md px-3 py-2 flex items-center gap-1" data-testid="link-contact">
                 <Mail className="h-4 w-4" />
