@@ -25,7 +25,7 @@ export function HomeProductsSection() {
   }
 
   return (
-    <section className="py-16 md:py-20 bg-background">
+    <section className="py-16 md:py-20 bg-muted/20">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between mb-12">
           <div>

@@ -50,7 +50,7 @@ export function HomeProductRequest() {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50 dark:from-purple-950 dark:via-pink-950 dark:to-orange-950">
+    <section className="py-16 md:py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -65,11 +65,11 @@ export function HomeProductRequest() {
             </div>
           </div>
           
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-indigo-600 to-orange-500 bg-clip-text text-transparent">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Have a Special Request?
           </h2>
           
-          <p className="text-lg md:text-xl text-muted-foreground mb-4 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-muted-foreground mb-4 max-w-2xl mx-auto leading-relaxed">
             Can't find the perfect digital product you're looking for? We're here to help! Share your requirements with us and our team will work to bring it to our marketplace.
           </p>
           
